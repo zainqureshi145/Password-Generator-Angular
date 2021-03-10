@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'pass-gen';
+  password = '';
+
+  onButtonClick() {
+    this.password = "Your Password";
+  }
 }
