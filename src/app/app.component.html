@@ -7,21 +7,21 @@
 
 <div>
   <label>Use Letters</label>
-  <input type="checkbox"/>
+  <input (change)="onChangeLettersHandler()" type="checkbox"/>
 </div>
 
 <div>
   <label>Use Numbers</label>
-  <input type="checkbox"/>
+  <input (change)="onChangeNumbersHandler()" type="checkbox"/>
 </div>
 
 <div>
   <label>Use Symbols</label>
-  <input type="checkbox"/>
+  <input (change)="onChangeSymbolsHandler()" type="checkbox"/>
 </div>
 
 <div>
-  <button (click)="onButtonClick()">Generate</button>
+  <button (click)="onButtonClickHandler()">Generate</button>
 </div>
 
 <div>
@@ -31,5 +31,10 @@
 
 <div>
   <label>Your Password - by inviking a function instead of property directly</label>
-  <input [value]="genPassword()"/>
+  <!-- <input [value]="genPassword()"/> -->
+  <p [innerHTML] = "genPassword()"></p>
 </div>
+
+<p>interpolation</p>
+
+{{ getName() }}
