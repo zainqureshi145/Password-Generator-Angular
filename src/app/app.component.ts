@@ -7,16 +7,52 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   password = '';
+  length = 0;
   useLetters = false;
   useNumbers = false;
   useSymbols = false;
 
   onButtonClickHandler() {
-    console.log(this.useLetters);
-    console.log(this.useNumbers);
-    console.log(this.useSymbols);
-    this.password = "Your Password";
+
+    const numbers = '1234567890';
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    const symbols = '!@#$%^&*()';
+
+    let validChars = '';
+
+    if (this.useNumbers) {
+      validChars = validChars + numbers;
+    }
+    if (this.useLetters) {
+      validChars = validChars + letters;
+    }
+    if (this.useSymbols) {
+      validChars = validChars + symbols;
+    }
+
+    let generatedPassword = '';
+    for (let i = 0; i < this.length; i++){
+      const index = Math.floor(Math.random() * validChars.length);
+      generatedPassword = generatedPassword + validChars[index];
+    }
+    this.password = generatedPassword;
+
+    console.log(`
+    Generating Password using: \n
+    Letters: ${this.useLetters} \n
+    Numbers: ${this.useNumbers} \n
+    Symbols: ${this.useSymbols} \n
+    `)
   }
+
+  onChangeLengthHandler(value: string) {
+    const parsedValue = parseInt(value);
+    if (!isNaN(parsedValue)) {
+      this.length = parsedValue;
+    }
+    console.log(parsedValue);
+  }
+
   onChangeLettersHandler() {
     this.useLetters = !this.useLetters;
   }
@@ -27,11 +63,11 @@ export class AppComponent {
     this.useSymbols = !this.useSymbols;
   }
 
-  genPassword() {
-    return this.password;
-  }
+  // genPassword() {
+  //   return this.password;
+  // }
 
-  getName() {
-    return 'Alexa';
-  }
+  // getName() {
+  //   return 'Alexa';
+  // }
 }
